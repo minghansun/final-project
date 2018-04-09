@@ -1,0 +1,72 @@
+//
+//  THE GRID.swift
+//  FINAL PROJECT
+//
+//  Created by Minghan's on 4/6/18.
+//  Copyright © 2018 Minghan's. All rights reserved.
+//
+
+import Foundation
+
+struct grid : CustomStringConvertible {
+    var grid = Array(repeating:Array(repeating: imagineryobject(objecttype: type.nothing),count:15),count:15)
+    
+    subscript (_ index1: Int, _ index2: Int) -> imagineryobject {
+        get {
+            return grid[index1][index2]
+        }
+        set {
+            grid[index1][index2] = newValue
+        }
+    }
+    
+    func printingHelper (string:  String) -> String {
+        var result = string
+        switch string.count {
+        case 7: return result
+        case let c where c < 7: for _ in 1...(7 - string.count) {
+            result += " "
+            }
+            return result
+        default: result = ""
+            for d in 0...6 {
+                result += String(Array(string)[d])
+            }
+            return result
+        }
+    }
+    
+    func gridDisplay () {
+        for x in 0...14 {
+            var string1 = ""
+            for _ in 0...120 {
+                string1 += "-"
+            }
+            print (string1)
+            for c in 0...2 {
+                var string2 = ""
+                for y in 0...14 { if grid[x][y].type != type.nothing {
+                    if c == 0{
+                        string2 += "|\(printingHelper(string: grid[x][y].name))"
+                    }
+                    if c == 1 {
+                        string2 += "|\(printingHelper(string:String(describing: grid[x][y].type)))"
+                    }
+                    if c == 2 {string2 += "|\(printingHelper(string:String(grid[x][y].energy)))"} }
+                else {string2 += "|       "}
+                }
+                string2 += "|       "
+                print (string2)
+            }
+        }
+        for _ in 1...120 {
+            print ("-", terminator:"")
+        }
+        print ("-")
+    }
+    
+    var description: String {
+        return ""
+    }
+    
+}
