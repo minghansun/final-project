@@ -9,11 +9,11 @@
 import Foundation
 
 struct grid : CustomStringConvertible {
-    var grid = Array(repeating:Array(repeating: imagineryobject(objecttype: type.nothing),count:15),count:15)
+    var grid = [[imagineryobject?]](repeating:[imagineryobject?](repeating: nil,count:15),count:15)
     
     subscript (_ index1: Int, _ index2: Int) -> imagineryobject {
         get {
-            return grid[index1][index2]
+            return grid[index1][index2]!
         }
         set {
             grid[index1][index2] = newValue
@@ -45,14 +45,14 @@ struct grid : CustomStringConvertible {
             print (string1)
             for c in 0...2 {
                 var string2 = ""
-                for y in 0...14 { if grid[x][y].type != type.nothing {
+                for y in 0...14 { if let object = grid[x][y] {
                     if c == 0{
-                        string2 += "|\(printingHelper(string: grid[x][y].name))"
+                        string2 += "|\(printingHelper(string: object.name))"
                     }
                     if c == 1 {
-                        string2 += "|\(printingHelper(string:String(describing: grid[x][y].type)))"
+                        string2 += "|\(printingHelper(string:String(describing: object.type)))"
                     }
-                    if c == 2 {string2 += "|\(printingHelper(string:String(grid[x][y].energy)))"} }
+                    if c == 2 {string2 += "|\(printingHelper(string:String(object.energy)))"} }
                 else {string2 += "|       "}
                 }
                 string2 += "|       "
