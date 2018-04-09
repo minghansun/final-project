@@ -1,0 +1,36 @@
+//
+//  GRID.swift
+//  FINAL PROJECT
+//
+//  Created by Minghan's on 4/6/18.
+//  Copyright © 2018 Minghan's. All rights reserved.
+//
+
+import Foundation
+
+enum type {
+    case tank
+    case mine
+    case rover
+    case nothing
+}
+
+struct imagineryobject : CustomStringConvertible {
+    var energy : Int
+    var name : String
+    var type : type
+    
+    init (energy: Int = 0, objectname name: String = "", objecttype type: type) {
+        self.energy = energy
+        self.name = name
+        self.type = type
+    }
+    
+    var description: String {
+        var description = ""
+        description += "\(name)\n"
+        description += "\(type)\n"
+        description += "\(energy)\n"
+        return description
+    }
+}
